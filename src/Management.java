@@ -15,7 +15,8 @@ public class Management {
             System.out.println("\n*** Main Menu ***");
             System.out.println("1. Register");
             System.out.println("2. View All");
-            System.out.println("3. Exit");
+            System.out.println("3. Delete");
+            System.out.println("4. Exit");
             System.out.print("Enter your choice: ");
             int mainChoice = scanner.nextInt();
             scanner.nextLine();
@@ -23,7 +24,8 @@ public class Management {
             switch (mainChoice) {
                 case 1 -> registerPerson();
                 case 2 -> viewAll();
-                case 3 -> {
+                case 3 -> deletePerson();
+                case 4 -> {
                     isRunning = false;
                     System.out.println("Exiting the system.");
                 }
@@ -82,6 +84,22 @@ public class Management {
         }
     }
 
+    public static void deletePerson() {
+        System.out.println("\n*** Delete ***");
+        System.out.println("1. Delete Professor");
+        System.out.println("2. Delete Student");
+        System.out.print("Enter your choice: ");
+        int deleteChoice = scanner.nextInt();
+        scanner.nextLine();
+
+
+        switch (deleteChoice) {
+            case 1 -> deleteProfessor();
+            case 2 -> deleteStudent();
+            default -> System.out.println("Invalid choice.");
+        }
+    }
+
     public static void registerStudent() {
         System.out.print("Enter name: ");
         String name = scanner.nextLine();
@@ -124,4 +142,44 @@ public class Management {
         System.out.println("\nProfessor registered successfully:");
         professor.displayProfessor();
     }
+
+    public static void deleteProfessor() {
+        System.out.println("Enter the Id to delete");
+        String idToDelete = scanner.nextLine();
+
+        boolean removed = false;
+
+        for (int i = 0; i < professors.size(); i++) {
+            if (professors.get(i).getId().equals(idToDelete)) {
+                professors.remove(i);
+                removed = true;
+                System.out.println("Professor with Id " + idToDelete + "has been removed successfully");
+                break;
+            }
+        }
+        if (!removed) {
+            System.out.println("Professor with Id " + idToDelete + " has not been found");
+        }
+    }
+
+    public static void deleteStudent() {
+        System.out.println("Enter the Id to delete");
+        String idToDelete = scanner.nextLine();
+
+        boolean removed = false;
+
+        for (int i = 0; i < students.size(); i++) {
+            if (students.get(i).getId().equals(idToDelete)) {
+                students.remove(i);
+                removed = true;
+                System.out.println("Student with Id " + idToDelete + "has been removed successfully");
+                break;
+            }
+        }
+        if (!removed) {
+            System.out.println("Student with Id " + idToDelete + " has not been found");
+        }
+    }
+
+
 }

@@ -14,7 +14,10 @@ public class Professor extends Person {
     private synchronized String generateId() {
         idCounter++;
         return "P" + String.format("%05d", idCounter);
+    }
 
+    public String getId() {
+        return employeeId;
     }
 
     void displayProfessor() {

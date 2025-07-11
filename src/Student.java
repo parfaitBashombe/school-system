@@ -17,6 +17,10 @@ public class Student extends Person {
         return "S" + String.format("%05d", idCounter);
     }
 
+    public String getId() {
+        return studentId;
+    }
+
     public void displayStudent() {
         displayInfo();
         System.out.println("Student ID: " + studentId + ", Course: " + course + ", Year: " + year);
